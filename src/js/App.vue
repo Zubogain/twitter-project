@@ -5,7 +5,6 @@
                 <aside>
                     <ul class="nav nav-tabs justify-content-end">
                         <li class="nav-item"><router-link to="/" class="nav-link">Главная</router-link></li>
-                        <li class="nav-item"><router-link to="/counter" class="nav-link">Counter (Redux)</router-link></li>
                     </ul>
                 </aside>
             </div>

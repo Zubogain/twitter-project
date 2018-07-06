@@ -1,12 +1,10 @@
 import '../css/style.css';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import VueResource from 'vue-resource';
 import { routes } from './router.js';
 import App from './App.vue';
 import Store from './store.js';
 Vue.use(VueRouter);
-Vue.use(VueResource);
 
 const router = new VueRouter({
     mode: "history",
@@ -27,6 +25,11 @@ new Vue({
             data: {
                 ...Store
             }
+        })
+    },
+    created() {
+        this.$redux.subscribe(() => {
+            localStorage.setItem('reduxState', JSON.stringify(this.$redux.getState()))
         })
     },
     render: h => h(App),
