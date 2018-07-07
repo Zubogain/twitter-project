@@ -10,6 +10,6 @@
 <script>
     export default {
         name: "ListItem",
-        props: ['item', 'list']
+        props: ['item']
     }
 </script>

@@ -1,16 +1,18 @@
 <template>
     <div>
         <form @submit="validateForm">
-            <textarea cols="30" rows="10" class="form-control col-12" v-model="post.title"></textarea>
+            <textarea cols="30" rows="3" class="form-control col-12" v-model="post.title"></textarea>
             <input class="btn btn-primary col-12" type="submit" value="Добавить">
         </form>
-        <List></List>
+        <List
+            v-bind:list="posts"
+        ></List>
     </div>
 </template>
 
 <script>
     import List from './List.vue';
-    import { insertPost } from './../actions/posts.js'
+    import * as actions from './../actions/posts.js';
     export default {
         name: "Main",
         components: {
@@ -18,17 +20,27 @@
         },
         data() {
           return {
-              post: {}
+              post: {},
+              posts: []
           }
         },
         methods: {
             validateForm(e) {
                 e.preventDefault();
                 if(this.post.title && (this.post.title = this.post.title.trim())) {
-                    this.$redux.dispatch(insertPost(Object.assign({}, this.post)));
+                    this.$redux.dispatch(actions.insertPost(this.post));
                     this.post = {};
                 }
             }
+        },
+        created() {
+            this.$redux.dispatch(actions.loadPosts());
+            this.posts = this.$redux.getState().posts;
+            this.unsubscribe = this.$redux.subscribe(() => {
+                this.posts = this.$redux.getState().posts;
+            });
+        }, destroyed() {
+            this.unsubscribe();
         }
     }
 </script>

@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import { routes } from './router.js';
 import App from './App.vue';
 import Store from './store.js';
+import store from "./store";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -23,13 +24,8 @@ new Vue({
     data: {
         redux: new Vue({
             data: {
-                ...Store
+                ...Store,
             }
-        })
-    },
-    created() {
-        this.$redux.subscribe(() => {
-            localStorage.setItem('reduxState', JSON.stringify(this.$redux.getState()))
         })
     },
     render: h => h(App),
