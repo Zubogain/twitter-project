@@ -1,14 +1,11 @@
 <template>
-    <div v-if="state.error">
-        <h3 class="col-12 text-center">{{ state.error }}</h3>
-    </div>
-    <div v-else>
+    <div>
         <form @submit="validateForm">
             <textarea cols="30" rows="3" class="form-control col-12" v-model="post.title"></textarea>
             <input class="btn btn-primary col-12" type="submit" value="Добавить">
         </form>
         <List
-                v-bind:list="state.list"
+            v-bind:list="posts"
         ></List>
     </div>
 </template>
@@ -24,7 +21,7 @@
         data() {
           return {
               post: {},
-              state: this.$redux.getState().posts
+              posts: []
           }
         },
         methods: {
@@ -37,10 +34,10 @@
             }
         },
         created() {
-            this.$redux.subscribe(() => {
-                this.state = this.$redux.getState().posts;
+            this.posts = this.$redux.getState().posts;
+            this.unsubscribe = this.$redux.subscribe(() => {
+                this.posts = this.$redux.getState().posts;
             });
-
         }, destroyed() {
             this.unsubscribe();
         }
