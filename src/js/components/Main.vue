@@ -37,8 +37,6 @@
             }
         },
         created() {
-            this.$redux.dispatch(actions.loadPosts());
-
             this.$redux.subscribe(() => {
                 this.state = this.$redux.getState().posts;
             });
