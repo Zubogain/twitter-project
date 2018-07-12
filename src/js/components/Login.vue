@@ -48,6 +48,9 @@
                             case 'INVALID_PASSWORD':
                                 this.error = 'Неверный пароль!';
                                 break;
+                            default:
+                                this.error = 'Ошибка сети!';
+                                break;
                         }
                     }
                 }

@@ -25,10 +25,10 @@
         },
         created() {
             const auth = this.$redux.getState().auth;
-            (auth != null)? this.auth = true: this.auth = false;
+            (auth != null && !('errors' in auth))? this.auth = true: this.auth = false;
             this.unsubscribe = this.$redux.subscribe(() => {
                 const auth = this.$redux.getState().auth;
-                (auth != null)? this.auth = true: this.auth = false;
+                (auth != null && !('errors' in auth))? this.auth = true: this.auth = false;
             });
         },
         destroyed() {

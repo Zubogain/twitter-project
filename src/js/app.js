@@ -15,7 +15,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     const auth = Store.getState().auth;
     if(to.matched.some(record => record.meta.requiresAuth)) {
-        if(auth == null) {
+        if(auth == null || 'errors' in auth) {
             next({
                 path: '/login',
             });
@@ -26,7 +26,7 @@ router.beforeEach((to, from, next) => {
         next();
     }
     if(to.matched.some(record => record.meta.notRequiresAuth)) {
-        if(auth != null) {
+        if(auth != null && !('errors' in auth)) {
             next({
                 path: '/'
             });

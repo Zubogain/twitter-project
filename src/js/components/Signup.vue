@@ -47,6 +47,9 @@
                             case 'WEAK_PASSWORD : Password should be at least 6 characters':
                                 this.error = 'Пароль должен быть не менее 6 символов!';
                                 break;
+                            default:
+                                this.error = 'Ошибка сети!';
+                                break;
                         }
                     }
                 }
