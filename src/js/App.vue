@@ -4,8 +4,13 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><router-link to="/" class="nav-link">Главная</router-link></li>
-                    <li class="nav-item" v-if="!auth"><router-link to="/login" class="nav-link">Войти</router-link></li>
-                    <li class="nav-item" v-else><router-link to="/logout" class="nav-link">Выйти</router-link></li>
+                    <template v-if="!auth">
+                        <li class="nav-item"><router-link to="/login" class="nav-link">Войти</router-link></li>
+                    </template>
+                    <template v-else>
+                        <li class="nav-item"><router-link to="/profile" class="nav-link">Мой профиль</router-link></li>
+                        <li class="nav-item"><router-link to="/logout" class="nav-link">Выйти</router-link></li>
+                    </template>
                 </ul>
             </div>
         </nav>

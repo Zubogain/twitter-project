@@ -10,6 +10,10 @@ export default function login(state = null, action) {
             return action.error;
         case 'LOGOUT':
             return action.state;
+        case 'RESPONSE_PASSWORD_CHANGE_SUCCESS':
+            return Object.assign(state, action.payload);
+        case 'UPDATE_TOKENS':
+            return Object.assign(state, action.payload);
         default:
             return state;
     }

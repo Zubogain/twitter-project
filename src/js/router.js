@@ -2,6 +2,7 @@ import Main from './components/Main.vue';
 import Login from './components/Login.vue';
 import Signup from './components/Signup.vue';
 import Logout from './components/Logout.vue';
+import Profile from './components/Profile.vue';
 import PageNotFound from './components/PageNotFound.vue';
 const routes = [
     {
@@ -25,6 +26,12 @@ const routes = [
         path: '/logout',
         name: 'logout',
         component: Logout,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: Profile,
         meta: { requiresAuth: true }
     },
     {

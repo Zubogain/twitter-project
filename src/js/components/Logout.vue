@@ -4,23 +4,28 @@
 
 <script>
     import { logout } from "./../actions/auth.js";
+    import { clearProfile } from "./../actions/profile.js";
     export default {
         name: "Logout",
         data() {
             return {
-                second: 5
+                second: 3
             }
         },
         created() {
             const self = this;
-            let timerId = setTimeout(function redirect() {
+            this.timerId = setTimeout(function redirect() {
                 if(!self.second--) {
                     self.$redux.dispatch(logout());
+                    self.$redux.dispatch(clearProfile());
                     self.$router.push('/');
                 } else {
-                    timerId = setTimeout(redirect, 1000);
+                    self.timerId = setTimeout(redirect, 1000);
                 }
             }, 1000);
+        },
+        destroyed() {
+            clearTimeout(this.timerId);
         }
     }
 </script>
