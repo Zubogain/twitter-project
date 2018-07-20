@@ -1,39 +1,37 @@
-import axios from "axios";
-import { updateTokens } from './auth.js';
+import { logout, updateTokens } from './auth.js';
+import { clearProfile } from './profile.js';
+import axios from 'axios';
 const key = 'AIzaSyBEmZPZacwxXpRlrzMUtqY-G9gf7PyGK4k';
 export const setTimeUpdate = () => (dispatch, getState) => {
-    const token = getState().token;
-    if(token === null) {
-        let expireSeconds = 3600;
-        const expiresDate = new Date();
-        expiresDate.setSeconds(expiresDate.getSeconds() + expireSeconds);
-        dispatch({ type: "SET_EXPIRE_TIME", date: expiresDate.getTime() });
-    }
-    let tokenTimer = setTimeout(function timer() {
-        if(getState().token != null) {
-            let expireSeconds = new Date().getSeconds();
-            const expiresDate = new Date(getState().token);
-            const currentDate = new Date();
-            expireSeconds = (expiresDate.getTime() - currentDate.getTime()) / 1000;
-            if(expireSeconds > 60) {
-                tokenTimer = setTimeout(timer, 1000);
-            } else {
+    let timerId = setTimeout(function timer(go = false) {
+        let state = getState();
+        let expiredDate = new Date();
+        if(state.token === null && !go) {
+            expiredDate.setTime(expiredDate.getTime() + (state.auth.expiresIn * 1000));
+            dispatch({ type: "EXPIRED_DATE", state: expiredDate.getTime() });
+            timerId = setTimeout(timer.bind(this, true), 1000);
+        } else {
+            let secondsLeft = (state.token - expiredDate.getTime()) / 1000;
+            if(secondsLeft < 4) {
                 axios.post(`https://securetoken.googleapis.com/v1/token?key=${key}`, {
-                    grant_type: 'refresh_token',
-                    refresh_token: getState().auth.refreshToken
+                    refresh_token: state.auth.refreshToken,
+                    grant_type: 'refresh_token'
                 }).then(response => {
-                    const tokens = {
+                    const dataWrap = {
                         idToken: response.data.id_token,
                         refreshToken: response.data.refresh_token
                     };
-                    const newDate = new Date();
-                    newDate.setSeconds(newDate.getSeconds() + 3600);
-                    dispatch({ type: "SET_EXPIRE_TIME", date: newDate.getTime() });
-                    dispatch(updateTokens(tokens));
-                    tokenTimer = setTimeout(timer, 1000);
+                    dispatch(updateTokens(dataWrap));
+                    dispatch({ type: "CLEAR_DATE", state: null });
+                    timerId = setTimeout(timer);
                 }).catch(error => {
-                    console.table(error);
-                })
+                    console.log('Ошибка обновления токена!');
+                    dispatch(logout());
+                    dispatch(clearProfile());
+                    dispatch({ type: "CLEAR_DATE", state: null });
+                });
+            } else {
+                timerId = setTimeout(timer, (secondsLeft - 4) * 1000);
             }
         }
     });

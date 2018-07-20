@@ -59,5 +59,5 @@ export const passwordChange = (password) => (dispatch, getState) => {
 };
 
 export const updateTokens = (tokens) => {
-    return { type: "UPDATE_TOKENS", payload: tokens }
-}
+    return { type: "UPDATE_TOKENS", payload: tokens };
+};
