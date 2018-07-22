@@ -34,6 +34,4 @@ export const signUp = (email, password) => dispatch => {
     });
 };
 
-export const logout = () => dispatch => {
-    dispatch({ type: 'LOGOUT', state: null });
-};
+export const logout = { type: 'LOGOUT', state: null };

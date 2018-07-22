@@ -13,6 +13,5 @@ export const loadPosts = () => (dispatch, getState) => {
     }
 };
 export const insertPost = (post) => {
-
     return { type: 'INSERT_POST', payload: post };
 };
