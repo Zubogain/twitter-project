@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "file-loader": "^1.1.11",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "vue": "^2.5.16",

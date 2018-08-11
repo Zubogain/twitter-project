@@ -1,0 +1,5 @@
+
+.icon-thumbs-down-1:before { content: '\e800'; } /* '' */
+.icon-thumbs-down:before { content: '\e801'; } /* '' */
+.icon-thumbs-up-1:before { content: '\e802'; } /* '' */
+.icon-thumbs-up:before { content: '\e803'; } /* '' */

@@ -47,17 +47,15 @@ const config = {
                 loader: 'vue-loader'
             },
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
-                use: [
-                    'file-loader',
-                    {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
                         loader: 'image-webpack-loader',
-                        options: {
-                            bypassOnDebug: true,
-                            disable: true,
-                        },
-                    },
-                ],
+                        name: '[name].[ext]',
+                        outputPath: './fonts/'
+                    }
+                }]
             }
         ]
     },

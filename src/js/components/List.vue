@@ -1,22 +1,13 @@
 <template>
-    <table class="table table-striped" v-else>
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">User</th>
-            <th scope="col">Title</th>
-            <th scope="col">Body</th>
-        </tr>
-        </thead>
-        <ListItem
+    <div class="container">
+        <div class="row">
+            <ListItem
                 v-for="item in list"
                 v-bind:item="item"
                 v-bind:key="item.id"
-        ></ListItem>
-        <tbody>
-
-        </tbody>
-    </table>
+            ></ListItem>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -29,3 +20,14 @@
         }
     }
 </script>
+
+<style>
+    body {
+        background-color: #EDF2F6;
+    }
+    a, a:focus, a:active, a:hover {
+        color: inherit;
+        text-decoration: none;
+        outline: none;
+    }
+</style>
