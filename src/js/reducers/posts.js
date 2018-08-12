@@ -3,7 +3,7 @@ export default function posts(state = { list: [], error: false }, action) {
         case 'INSERT_POST':
             return { list: state.list.concat(action.payload), error: false };
         case 'FETCH_POSTS_SUCCESS':
-            return action.payload;
+            return { list: state.list.concat(action.payload.post), error: false };;
         case 'FETCH_POSTS_ERROR':
             return action.payload;
         default: {

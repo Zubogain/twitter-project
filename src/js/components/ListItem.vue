@@ -1,10 +1,4 @@
 <template>
-<!--     <tr>
-        <td>{{ item.id }}</td>
-        <td>{{ item.userId }}</td>
-        <td>{{ item.title }}</td>
-        <td>{{ item.body }}</td>
-    </tr> -->
     <div class="col-12 listItem">
         <div class="listItem__wrap">
             <header class="listItem__header">
@@ -13,10 +7,10 @@
                 </figure>
                 <div class="listItem__header__info">
                     <div class="listItem__header__info__name listItem__main_color listItem__hover_color">
-                        <a href="#">{{ item.userId }}</a>
+                        <a href="#">{{ item.userName || 'Anonimous' }}</a>
                     </div>
                     <div class="listItem__header__info__last">
-                        13:33 AM
+                        {{ item.title }}
                     </div>
                 </div>
             </header>
@@ -24,23 +18,8 @@
                 {{ item.body }}
             </div>
             <footer class="listItem__socialBtn">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, repellat.
-                <div class="listItem__socialBtn__likes">
-                    <div class="listItem__socialBtn__likes"><!-- Сюдой добавь статус, по которому будет менятся картинка -->
-                        <figure>
-                            <img src="" alt="">
-                        </figure>
-                        <div class="listItem__socialBtn__likes__last6men">
-                            <figure class="listItem__socialBtn__likes__last6men__men">
-                                <img src="" alt="">
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-                <div class="listItem__socialBtn__reposts_coments">
-                    <div class="listItem__socialBtn__reposts_coments__comens"></div>
-                    <div class="listItem__socialBtn__reposts_coments__reposts"></div>
-                </div>
+                <i class="icon-thumbs-up-1">0</i>
+                <i class="icon-thumbs-down-1">0</i>
             </footer>
         </div>
     </div>
@@ -61,7 +40,7 @@
         color: #ff5e3a;
     }
     .listItem {
-        background-color: white;
+        background-color: rgb(250, 251, 252);
         margin-top: 7.5px;
         margin-bottom: 7.5px;
         border-radius: 4px;
@@ -115,8 +94,11 @@
     .listItem__socialBtn {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         position: relative;
+    }
+    .listItem__socialBtn > i {
+        flex-basis: 50px;
     }
     .listItem__socialBtn:before {
         content: '';

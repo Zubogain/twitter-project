@@ -1,12 +1,12 @@
 <template>
-    <div class="col-6 offset-3">
-        <h3>Мой профиль</h3>
-        <form @submit="formValidate">
+    <div class="col-12 content-wrap">
+        <h3 class="col-4">Мой профиль</h3>
+        <form @submit="formValidate" class="col-12 form-group">
             <h5 style="color: red" v-if="error">{{ error }}</h5>
             <h5 style="color: red" v-if="success">{{ success }}</h5>
             <input type="text" class="form-control" placeholder="Имя" v-model="user.name">
             <input type="password" class="form-control" placeholder="Пароль" v-model="user.password">
-            <input class="btn btn-primary" type="submit" value="Сохранить">
+            <input class="btn btn-custom-green" type="submit" value="Сохранить">
         </form>
     </div>
 </template>

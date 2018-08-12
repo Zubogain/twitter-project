@@ -1,17 +1,17 @@
 <template>
-    <form @submit="validateForm">
-        <h4 v-if="error" style="color: red"> {{error}} </h4>
+    <form @submit="validateForm" class="content-wrap col-12">
+        <h6 v-if="error" class="alert alert-danger"> {{ error }} </h6>
         <div class="form-group">
             <label for="exampleInputEmail1">Адрес эл. почты</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" v-model="email">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" v-model="email" required>
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Пароль</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password" required>
         </div>
-        <button type="submit" class="btn btn-primary">Войти</button>
-        <router-link to="/signup" tag="button" class="btn btn-primary">Регистрация</router-link>
+        <button type="submit" class="btn btn-custom-green">Войти</button>
+        <router-link to="/signup" tag="button" class="btn btn-custom-green">Регистрация</router-link>
     </form>
 </template>
 

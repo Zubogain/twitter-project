@@ -1,1 +1,30 @@
-@import "./fonts.css";
+#logo {
+    color: white;
+    cursor: default;
+}
+
+.content-wrap {
+    background-color: rgb(250, 251, 252);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-left: 1px solid rgb(227, 228, 232);
+    border-right: 1px solid rgb(227, 228, 232);
+    border-bottom: 1px solid rgb(227, 228, 232);
+}
+
+.bg-custom-green {
+    background-color: rgb(71, 151, 134);
+}
+
+.btn-custom-green {
+    background-color: rgb(71, 151, 134);
+    color: white;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s
+}
+
+.fade-enter, .fade-leave-active {
+    opacity: 0
+}

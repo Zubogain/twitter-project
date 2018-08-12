@@ -1,8 +1,8 @@
 <template>
-    <main class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
+    <main>
+        <nav class="navbar navbar-expand navbar-dark bg-custom-green">
+            <div class="container justify-content-end" id="navbarNav">
+                <ul class="navbar-nav row">
                     <li class="nav-item"><router-link to="/" class="nav-link">Главная</router-link></li>
                     <template v-if="!auth">
                         <li class="nav-item"><router-link to="/login" class="nav-link">Войти</router-link></li>
@@ -14,8 +14,14 @@
                 </ul>
             </div>
         </nav>
-        <div>
-            <router-view></router-view>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <transition name="fade" mode="out-in" appear>
+                        <router-view></router-view>
+                    </transition>
+                </div>
+            </div>
         </div>
     </main>
 </template>

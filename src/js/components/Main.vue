@@ -2,10 +2,13 @@
     <div v-if="state.error">
         <h3 class="col-12 text-center">{{ state.error }}</h3>
     </div>
-    <div v-else>
-        <form @submit="validateForm">
-            <textarea cols="30" rows="3" class="form-control col-12" v-model="post.title"></textarea>
-            <input class="btn btn-primary col-12" type="submit" value="Добавить">
+    <div v-else class="row">
+        <form @submit="validateForm" class="content-wrap col-12">
+            <div class="form-group col-12">
+                <input type="text" class="form-control col-12" placeholder="Post title..." v-model="post.title" required>
+                <textarea cols="30" rows="3" class="form-control col-12" placeholder="Text..." v-model="post.body" required></textarea>
+                <input class="btn btn-custom-green col-12" type="submit" value="Добавить">
+            </div>
         </form>
         <List
                 v-bind:list="state.list"
@@ -30,7 +33,7 @@
         methods: {
             validateForm(e) {
                 e.preventDefault();
-                if(this.post.title && (this.post.title = this.post.title.trim())) {
+                if(this.post.title && (this.post.title = this.post.title.trim()) && this.post.body && (this.post.body = this.post.body.trim())) {
                     this.$redux.dispatch(actions.insertPost(this.post));
                     this.post = {};
                 }
